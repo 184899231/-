@@ -1,0 +1,25 @@
+<view class='list'>
+  <form bindsubmit="formSubmit">
+    <view class='item'>
+      <text>分类</text>
+      <input name="classify" placeholder='请填写分类'></input>
+    </view>
+    <view class='select'>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}" wx:key="{{index}}">
+          <radio class='radio-icon' value="{{item.name}}" checked="{{item.checked}}" />
+          {{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view class='img_list'>
+      <view class='li' wx:for="{{imgList}}" wx:key="this" data-index="{{index}}" bindtap='previewImage'>
+        <image mode='aspectFill' src='{{item}}'></image>
+      </view>
+      <view class='li add' bindtap='chooseImage'>
+        <view class='text'>添加图片</view>
+      </view>
+    </view>
+    <button type='primary' class='btn' form-type="submit">保存</button>
+  </form>
+</view>

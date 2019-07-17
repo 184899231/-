@@ -1,0 +1,47 @@
+page {
+    background-color: #f8f8f8;
+}
+
+image {
+    width: 100%;
+}
+
+/*清浮*/
+
+.g-cf:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.g-cf {
+    zoom: 1;
+}
+
+/*浮动*/
+
+.g-f-l {
+    float: left;
+    _display: inline;
+}
+
+.g-f-r {
+    float: right;
+    _display: inline;
+}
+
+
+.content{
+  margin: 0 20rpx 60rpx;
+  text-align: justify; 
+  overflow: hidden;
+}  
+
+.left,.right{
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+.right{
+  float: right;
+}

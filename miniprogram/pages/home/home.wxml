@@ -1,0 +1,11 @@
+<view class="home">
+  <image class='homeBg' mode='aspectFill' src='/images/homeBg.jpg'></image>
+  <view class='bigImg'>
+    <image mode='aspectFill' src='{{bigImg}}'></image>
+  </view>
+  <scroll-view class='scrollView' scroll-x>
+    <view class='item' bindtap='selectImg' data-index="{{index}}" wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <image mode='aspectFill' src='{{item}}'></image>
+    </view>
+  </scroll-view>
+</view>

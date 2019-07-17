@@ -1,0 +1,9 @@
+<!--pages/mood-poster/mood-poster.wxml-->
+<view class='canvas-content' style="height: {{height}}px">
+  <view class='canvas-main'>
+    <canvas style="width: 320px; height: 320px;" canvas-id="mood-canvas"></canvas>
+  </view>
+</view>
+<view class='btn' bindtap='savePoster'>
+  保存到相册  
+</view> 

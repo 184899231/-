@@ -1,0 +1,27 @@
+<!-- 套图列表 -->
+<view class="content">
+    <view class="left">
+        <block wx:for="{{note}}" wx:key="this">
+            <item 
+              detail="{{item}}" 
+              index="{{index}}" 
+              bind:previewImage="previewImage" 
+              bind:showEditEvent="showEditEvent" 
+              bind:deleteImg="deleteImg" 
+              bind:edit="editImg" 
+              wx:if="{{index%2==0}}"></item>
+        </block>
+    </view>
+    <view class="right">
+        <block wx:for="{{note}}" wx:key="this">
+            <item 
+              detail="{{item}}" 
+              index="{{index}}" 
+              bind:previewImage="previewImage" 
+              bind:showEditEvent="showEditEvent" 
+              bind:deleteImg="deleteImg" 
+              bind:edit="editImg" 
+              wx:if="{{index%2==1}}"></item>
+        </block>
+    </view>
+</view>

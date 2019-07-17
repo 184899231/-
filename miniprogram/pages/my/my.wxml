@@ -1,0 +1,30 @@
+<view class="header">
+  <image mode='aspectFill' src='/images/my-bg.jpg'></image>
+  <view class='avater'>
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class='userName'>
+    <open-data type="userNickName"></open-data>
+  </view>
+</view>
+<view class='update' wx:if="{{isSelf}}">
+  <view class='item'>
+    <navigator url='/pages/publish/publish'>
+      <image mode='aspectFill' src='/images/i-1.png'></image>
+      <view>上传图片</view>
+    </navigator>
+  </view>
+  <view class='item'>
+    <navigator url='/pages/publish-mood/publish-mood'>
+      <image mode='aspectFill' src='/images/i-2.png'></image>
+      <view>上传心情</view>
+    </navigator>
+  </view>
+</view>
+<view class='list'>
+  <view class='item' bindtap='navigator' wx:for="{{list}}" wx:key="{{item.id}}" data-url="{{item.to}}">
+    <image class='icon' mode='aspectFill' src='{{item.icon}}'></image>
+    {{item.name}}
+    <image class='right' mode='aspectFill' src='/images/icon-right-arrow.png'></image>
+  </view>
+</view>

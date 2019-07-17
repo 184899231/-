@@ -1,0 +1,9 @@
+<!--pages/mood/mood.wxml-->
+<view class='mood-list'>
+  <view class='item' wx:for="{{moodList}}" wx:key="{{index}}">
+    <image mode='aspectFill' src='{{item.src}}'></image>
+    <view class='title'>{{item.title}}</view>
+    <view class='btn' data-id="{{item._id}}" bindtap='createPoster'>生成图片</view>
+  </view>
+</view>
+

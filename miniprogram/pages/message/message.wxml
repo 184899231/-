@@ -1,0 +1,20 @@
+<!--pages/message/message.wxml-->
+<view class='message'>
+  <view class='item' wx:for="{{messageList}}" wx:key="{{item._id}}">
+    <view class='content'>{{item.content}}</view>
+    <view class='publisher'>
+      <view class='avatar'><image mode='aspectFill' src='{{item.avatar}}'></image></view>
+      <view class='nikename'>{{item.nikeName}}</view>
+      <view class='date'>{{item.time}}</view>
+    </view>
+  </view>
+</view>
+<view class='height'></view>
+<view class='message-btn' bindtap='messageHandler'>留言</view>
+<view class='popup' wx:if="{{showMessage}}"></view>
+<view class='message-dialog' wx:if="{{showMessage}}">
+  <form bindsubmit="formSubmit">
+    <textarea name="textarea" class='textarea' value='{{message}}' placeholder='请输入留言内容' placeholder-class="placeholder"></textarea>
+    <button form-type="submit" class='confirm'>确定</button>
+  </form>
+</view>

@@ -1,0 +1,35 @@
+/* pages/mood-poster/mood-poster.wxss */
+page{
+  background-color: rgba(0,0,0,0.6);
+}
+.canvas-content{
+  width: 100%;
+  position: relative;
+}
+.canvas-main{
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  overflow: hidden;
+}
+.mood-canvas{
+  background-color: #fff;
+  overflow: hidden;
+}
+.btn{
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #fff;
+  line-height: 60px;
+  font-size: 16px;
+  color: #333;
+  z-index: 9;
+}

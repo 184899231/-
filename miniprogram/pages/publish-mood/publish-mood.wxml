@@ -1,0 +1,18 @@
+<!--pages/publish-mood/publish-mood.wxml-->
+<view class='list'>
+  <form bindsubmit="formSubmit">
+    <view class='item'>
+      <text>标题</text>
+      <input name="classify" placeholder='请填写标题'></input>
+    </view>
+    <view class='img_list'>
+      <view class='li' wx:for="{{imgList}}" wx:key="this" data-index="{{index}}" bindtap='previewImage'>
+        <image mode='aspectFill' src='{{item}}'></image>
+      </view>
+      <view class='li add' bindtap='chooseImage'>
+        <view class='text'>添加图片</view>
+      </view>
+    </view>
+    <button type='primary' class='btn' form-type="submit">保存</button>
+  </form>
+</view>

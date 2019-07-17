@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="container">
+  <image class='music {{playMusic ? "play" : ""}}' bindtap='playMusic' mode='aspectFill' src='/images/music.png'></image>
+  <!-- <image class='face' mode='widthFix' src='/images/face.png'></image>
+  <view class='nomain'>半夏时光，半支离歌</view> -->
+  <image class='bg' src='/images/bg.png'></image>
+  <button wx:if="{{!hasUserInfo}}" class='getuserinfo' open-type='getUserInfo' bindgetuserinfo="getUserInfo">进入主页</button>
+  <button wx:if="{{hasUserInfo}}" bindtap='toIndex' class='getuserinfo'>进入主页</button>
+</view>

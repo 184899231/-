@@ -1,0 +1,37 @@
+/* pages/publish/publish.wxss */
+.list{
+  margin: 0 20rpx;
+}
+.list .item{
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  line-height: 40px;
+}
+.list .item text{
+  float: left;
+  width: 50px;
+  font-size: 28rpx;
+  color: #333;
+}
+.list .item input{
+  height: 40px;
+  font-size: 28rpx;
+}
+.btn{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.img_list{ overflow: hidden; margin: 20rpx 0;}
+.li{ text-align: center; height: 200px; width: 100%; background-color: #f3f3f3; color: #999; float: left; margin-right: 15px; margin-bottom: 15px;}
+.li image{ height: 200px; width: 100%;}
+.add{ height: 50px; line-height: 50px; font-size: 28rpx;}
+
+.select{
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.radio{
+  margin-right: 14px;
+}

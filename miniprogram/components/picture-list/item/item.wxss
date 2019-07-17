@@ -1,0 +1,36 @@
+/* components/picture-list/item/item.wxss */
+.item{
+  border-radius: 10rpx;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  display: inline-block;
+  overflow: hidden;
+  border: 1px solid #fff;
+  position: relative;
+}
+.item image{
+  float: left;
+}
+
+.edit{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.edit-item{
+  display: inline-block;
+  margin: 0 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  line-height: 120rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
