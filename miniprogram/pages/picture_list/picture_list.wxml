@@ -9,6 +9,7 @@
               bind:showEditEvent="showEditEvent" 
               bind:deleteImg="deleteImg" 
               bind:edit="editImg" 
+              bind:hideEdit="hideEdit"
               wx:if="{{index%2==0}}"></item>
         </block>
     </view>
@@ -21,6 +22,7 @@
               bind:showEditEvent="showEditEvent" 
               bind:deleteImg="deleteImg" 
               bind:edit="editImg" 
+              bind:hideEdit="hideEdit"
               wx:if="{{index%2==1}}"></item>
         </block>
     </view>

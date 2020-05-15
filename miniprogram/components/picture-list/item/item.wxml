@@ -1,6 +1,7 @@
 <!--components/picture-list/item/item.wxml-->
-<view class="item" bindlongpress="showEditEvent" bindtap='previewImage' data-index="{{index}}">
-  <image class="item-img" src="{{detail.src}}" mode="widthFix"></image>
+<view class="item" bindlongpress="showEditEvent" data-index="{{index}}">
+  <image class="item-img" bindtap='previewImage' data-index="{{index}}" src="{{detail.src}}" mode="widthFix"></image>
+  <view class="meng" wx:if="{{detail.showEdit}}" bindtap="hideEdit"></view>
   <view class="edit" wx:if="{{detail.showEdit}}">
     <!-- <view class="edit-item" data-id="{{detail._id}}" catchtap="editHandle">编辑</view> -->
     <view class="edit-item" data-id="{{detail._id}}" catchtap="deleteImg">删除</view>

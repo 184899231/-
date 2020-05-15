@@ -35,6 +35,9 @@ Component({
     },
     editHandle(e){
       this.triggerEvent('edit', e.currentTarget.dataset.id)
+    },
+    hideEdit(){
+      this.triggerEvent('hideEdit', this)
     }
   }
 })

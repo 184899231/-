@@ -22,7 +22,7 @@ Page({
   showEditEvent(e){
     if (app.globalData.openid === 'o0oLx0HwxjATxR2i7vyaHhih_1XU' || app.globalData.openid === 'o0oLx0OGVOkgcUNpGD-hK_vcFP78'){
       let index = e.detail;
-      const note = this.data.note;
+      let note = this.data.note;
       note.map((item) => {
         item.showEdit = false
       })
@@ -65,6 +65,15 @@ Page({
       }
     })
     
+  },
+  hideEdit(){
+    let note = this.data.note;
+    note.map((item) => {
+      item.showEdit = false
+    })
+    this.setData({
+      note
+    })
   },
   //获取图片列表
   getList(){

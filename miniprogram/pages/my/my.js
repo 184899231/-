@@ -7,7 +7,7 @@ Page({
    */
   data: {
     list: [
-      { id: 0, icon: '/images/comment.png', name: '留言', to: '/pages/message/message'}
+      // { id: 0, icon: '/images/comment.png', name: '留言', to: '/pages/message/message'}
     ],
     isSelf: false
   },
