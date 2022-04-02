@@ -1,3 +1,5 @@
+const { admin } = require("../../config/env");
+
 // pages/my/my.js
 const app = getApp()
 Page({
@@ -9,7 +11,8 @@ Page({
     list: [
       // { id: 0, icon: '/images/comment.png', name: '留言', to: '/pages/message/message'}
     ],
-    isSelf: false
+    isSelf: false,
+    openid: ''
   },
   navigator(e){
     let url = e.currentTarget.dataset.url;
@@ -17,11 +20,74 @@ Page({
       url: url,
     })
   },
+
+  // getUserInfo(e){
+  //   const db = wx.cloud.database();
+  //   if (e.detail.errMsg == "getUserInfo:ok"){
+  //     let userinfo = e.detail.userInfo;
+  //     db.collection('userInfo').add({
+  //       data: {
+  //         ...userinfo,
+  //         admin: false
+  //       }
+  //     }).then(() => {
+  //       this.onGetOpenid(() => {
+  //         this.init();
+  //       });
+  //       wx.showToast({
+  //         title: '登录成功',
+  //         icon: 'none'
+  //       })
+  //       this.toIndex()
+  //     })
+  //   }else{
+  //     wx.showToast({
+  //       title: '请先授权',
+  //       icon: 'none'
+  //     })
+  //   }
+  // },
+  // onGetOpenid: function(fn) {
+  //   const db = wx.cloud.database();
+  //   // 调用云函数
+  //   wx.cloud.callFunction({
+  //     name: 'login',
+  //     data: {},
+  //     success: res => {
+  //       app.globalData.openid = res.result.openid;
+  //       let openId = res.result.openid;
+  //       db.collection('userInfo').where({
+  //         '_openid': openId
+  //       }).get().then(res => {
+  //         if(res.data.length){
+  //           this.setData({
+  //             hasUserInfo: true
+  //           })
+  //         }
+  //         fn();
+  //         wx.hideLoading()
+  //       })
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数] [login] 调用失败', err)
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.openid === 'o0oLx0HwxjATxR2i7vyaHhih_1XU' || app.globalData.openid === 'o0oLx0OGVOkgcUNpGD-hK_vcFP78') {
+    this.init();
+  },
+  init(){
+    // if(app.globalData.openid){
+    //   db.collection('userInfo').where({
+    //     _openid: app.globalData.openid
+    //   }).get().then(res => {
+    //     console.log(res)
+    //   })
+    // }
+    if (admin.includes(app.globalData.openid)) {
       this.setData({
         isSelf: true
       })

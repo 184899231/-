@@ -40,3 +40,15 @@
   font-size: 28rpx;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.item-recommend{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.open{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0,0,0,.4);
+  padding: 4rpx 10rpx;
+}

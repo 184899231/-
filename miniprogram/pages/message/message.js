@@ -99,6 +99,16 @@ Page({
    */
   onLoad: function (options) {
     wx.showLoading()
+    db.collection('userInfo').where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
+      const { admin } = res.data[0];
+      if(admin){
+        this.setData({
+          showMain: true
+        })
+      }
+    })
     this.getMessageList()
   },
 

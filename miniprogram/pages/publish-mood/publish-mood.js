@@ -1,5 +1,6 @@
 // pages/publish-mood/publish-mood.js
 const app = getApp();
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -90,8 +91,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
     wx.hideShareMenu()
+    db.collection('userInfo').where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
+      const { admin } = res.data[0];
+      if(admin){
+        this.setData({
+          showMain: true
+        })
+      }
+    })
   },
 
   /**

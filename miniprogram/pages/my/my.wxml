@@ -4,7 +4,7 @@
     <open-data type="userAvatarUrl"></open-data>
   </view>
   <view class='userName'>
-    <open-data type="userNickName"></open-data>
+    <open-data type="userNickName" wx:if="openid"></open-data>
   </view>
 </view>
 <view class='update' wx:if="{{isSelf}}">

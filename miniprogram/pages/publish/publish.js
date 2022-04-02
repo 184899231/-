@@ -1,5 +1,6 @@
 // pages/publish/publish.js
 const app = getApp();
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -11,7 +12,14 @@ Page({
       { name: 'open', value: '公开', checked: 'true' },
       { name: 'privacy', value: '仅自己可见' },
     ],
-    open: true
+    open: true,
+    array: ['请选择分类', '合照', '自拍', '婚纱照', '宝贝照'],
+    classIndex: 0
+  },
+  bindPickerChange: function(e) {
+    this.setData({
+      classIndex: e.detail.value
+    })
   },
   radioChange(e) {
     let value = e.detail.value;
@@ -27,11 +35,12 @@ Page({
   },
   //提交表单信息
   formSubmit(e){
+    console.log(e.detail.value)
     let val = e.detail.value;
-    if (!val.classify){
+    if (!val.classify && val.classify !== 0){
       return wx.showToast({
         icon: 'none',
-        title: '请填写分类',
+        title: '请选择分类',
       })
     }
     if (!this.data.imgList.length){
@@ -41,7 +50,8 @@ Page({
       })
     }
     let obj = {
-      classify: val.classify
+      type: this.data.array[val.classify],
+      city: val.city
     }
     wx.showLoading({
       title: '正在上传',
@@ -50,16 +60,17 @@ Page({
     const db = wx.cloud.database();
     let date = new Date().getTime();
     wx.cloud.uploadFile({
-      cloudPath: val.classify + '/' + date + that.data.imgList[0].match(/\.[^.]+?$/)[0],  //上传云路径
+      cloudPath: this.data.array[Number(val.classify)] + '/' + date + that.data.imgList[0].match(/\.[^.]+?$/)[0],  //上传云路径
       filePath: that.data.imgList[0],  //图片路径
       success: res => {
         let fileID = res.fileID  //成功后返回的云图片路径
         let data = {
           src: fileID,
-          type: val.classify,
           time: db.serverDate(),
           open: that.data.open,
-          praise: 0
+          praise: 0,
+          home_recommend: false,
+          ...obj
         }
         db.collection('pictureList').add({   //存入数据库pictureList
           data: data, 
@@ -111,6 +122,16 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu()
+    db.collection('userInfo').where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
+      const { admin } = res.data[0];
+      if(admin){
+        this.setData({
+          showMain: true
+        })
+      }
+    })
   },
 
   /**

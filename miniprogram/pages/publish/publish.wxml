@@ -1,8 +1,17 @@
-<view class='list'>
+<view class='list' wx:if="{{showMain}}">
   <form bindsubmit="formSubmit">
     <view class='item'>
-      <text>分类</text>
-      <input name="classify" placeholder='请填写分类'></input>
+      <text>分类：</text>
+      <!-- <input name="classify" placeholder='请填写分类'></input> -->
+      <picker name="classify" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[classIndex]}}
+        </view>
+      </picker>
+    </view>
+    <view class='item'>
+      <text>城市：</text>
+      <input name="city" placeholder='请填写城市，没有则不填'></input>
     </view>
     <view class='select'>
       <radio-group class="radio-group" bindchange="radioChange">
@@ -23,3 +32,4 @@
     <button type='primary' class='btn' form-type="submit">保存</button>
   </form>
 </view>
+<view wx:if="{{!showMain}}">暂无该板块</view>

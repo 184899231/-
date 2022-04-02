@@ -1,5 +1,5 @@
 <!--pages/publish-mood/publish-mood.wxml-->
-<view class='list'>
+<view class='list' wx:if="{{showMain}}">
   <form bindsubmit="formSubmit">
     <view class='item'>
       <text>标题</text>
@@ -16,3 +16,4 @@
     <button type='primary' class='btn' form-type="submit">保存</button>
   </form>
 </view>
+<view wx:if="{{!showMain}}">暂无该板块</view>

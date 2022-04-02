@@ -1,5 +1,5 @@
 <!--pages/message/message.wxml-->
-<view class='message'>
+<view class='message' wx:if="{{showMain}}">
   <view class='item' wx:for="{{messageList}}" wx:key="{{item._id}}">
     <view class='content'>{{item.content}}</view>
     <view class='publisher'>
@@ -10,7 +10,7 @@
   </view>
 </view>
 <view class='height'></view>
-<view class='message-btn' bindtap='messageHandler'>留言</view>
+<view class='message-btn' wx:if="{{showMain}}" bindtap='messageHandler'>留言</view>
 <view class='popup' wx:if="{{showMessage}}"></view>
 <view class='message-dialog' wx:if="{{showMessage}}">
   <form bindsubmit="formSubmit">
@@ -18,3 +18,4 @@
     <button form-type="submit" class='confirm'>确定</button>
   </form>
 </view>
+<view wx:if="{{!showMain}}">暂无该板块</view>

@@ -12,15 +12,17 @@ Page({
   },
   //预览图片
   previewImage(e){
+    const that = this;
     let index = e.detail;
     wx.previewImage({
-      current: this.data.imagesList[index], // 当前显示图片的http链接
-      urls: this.data.imagesList // 需要预览的图片http链接列表
+      current: that.data.imagesList[index], // 当前显示图片的http链接
+      urls: that.data.imagesList // 需要预览的图片http链接列表
     })
   },
   //长按显示编辑
   showEditEvent(e){
-    if (app.globalData.openid === 'o0oLx0HwxjATxR2i7vyaHhih_1XU' || app.globalData.openid === 'o0oLx0OGVOkgcUNpGD-hK_vcFP78'){
+    //如果是管理员才能编辑
+    if(this.data.userInfo.admin){
       let index = e.detail;
       let note = this.data.note;
       note.map((item) => {
@@ -45,6 +47,7 @@ Page({
 
   //删除图片
   deleteImg(e){
+    const that = this;
     wx.showModal({
       title: '确定删除这张图片？',
       success(res) {
@@ -56,7 +59,11 @@ Page({
                 title: '删除成功',
                 icon: 'none'
               })
-              this.getList()
+              //删除后重新获取图片列表
+              that.getList()
+            },
+            fail: (err) => {
+              console.log(err)
             }
           })
         } else if (res.cancel) {
@@ -75,69 +82,68 @@ Page({
       note
     })
   },
+  recommendImg(e){
+    wx.showLoading();
+    //设置成首页推荐
+    db.collection('pictureList').doc(e.detail).update({
+      data: {
+        home_recommend: true
+      }
+    }).then(() => {
+      wx.hideLoading();
+      this.hideEdit();
+      wx.showToast({
+        title: '推荐成功',
+        icon: 'none'
+      })
+    })
+  },
   //获取图片列表
   getList(){
     this.setData({
       imagesList: []
     })
-    //是否是本人
-    if (app.globalData.openid === 'o0oLx0HwxjATxR2i7vyaHhih_1XU' || app.globalData.openid === 'o0oLx0OGVOkgcUNpGD-hK_vcFP78'){
-      db.collection('pictureList').get().then(res => {
-        //全部添加字段showEdit为false
-        res.data.map((item) => {
-          item.showEdit = false
-        })
+    db.collection('userInfo').get().then(user => {
+      //调用云函数获取图片列表
+      wx.cloud.callFunction({
+        name: 'get_picture_info'
+      }).then(res => {
+        //这里获取的是所有图片
         this.setData({
-          note: res.data.reverse()
-        })
-        //只保存图片为一个数组，方便图片预览
-        let imagesList = this.data.imagesList;
-        for (let i = 0; i < this.data.note.length; i++) {
-          imagesList = [
-            ...imagesList,
-            this.data.note[i].src
-          ]
+          userInfo: user.data[0],
+          note: res.result.data.reverse()
+        }, () => {
+          //只保存图片为一个数组，提供图片预览
+          let imagesList = this.data.imagesList;
+          for (let i = 0; i < this.data.note.length; i++) {
+            imagesList = [
+              ...imagesList,
+              this.data.note[i].src
+            ]
+          }
           this.setData({
             imagesList
           })
-        }
-        wx.hideLoading()
-      })
-    }else{
-      //不是则查询open为true的记录
-      db.collection('pictureList').where({
-        open: true
-      }).get().then(res => {
-        //全部添加字段showEdit为false
-        res.data.map((item) => {
-          item.showEdit = false
+        });
+        wx.hideLoading();
+      }).catch(err => {
+        wx.showToast({
+          title: '获取图片的云函数出错',
+          icon: 'none'
         })
-        this.setData({
-          note: res.data.reverse()
-        })
-        //只保存图片为一个数组，方便图片预览
-        let imagesList = this.data.imagesList;
-        for (let i = 0; i < this.data.note.length; i++) {
-          imagesList = [
-            ...imagesList,
-            this.data.note[i].src
-          ]
-          this.setData({
-            imagesList
-          })
-        }
-        wx.hideLoading()
+        wx.hideLoading();
       })
-    }
+      
+    })
+    
+    
     
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '正在加载',
-    })
+    
   },
 
   /**
@@ -151,6 +157,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.showLoading({
+      title: '正在加载',
+    })
     this.getList()
   },
 

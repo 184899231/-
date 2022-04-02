@@ -1,17 +1,13 @@
 // pages/home/home.js
+const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      'cloud://marco-4ce7ef.6d61-marco-4ce7ef/自拍/1551692937696.jpg',
-      '/images/lunbo1.jpg',
-      '/images/lunbo2.jpg',
-      '/images/lunbo3.jpg'
-    ],
-    bigImg: 'cloud://marco-4ce7ef.6d61-marco-4ce7ef/自拍/1551692937696.jpg'
+    imgUrls: [],
+    bigImg: ''
   },
   selectImg(e){
     let index = e.currentTarget.dataset.index;
@@ -22,8 +18,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const db = wx.cloud.database();
+  onLoad: function () {
+    db.collection('pictureList').where({
+      home_recommend: true
+    }).get().then(res => {
+      let img_list = [];
+      const list = res.data;
+      for(let i = 0; i < list.length; i++){
+        img_list.push(list[i].src)
+      }
+      this.setData({
+        imgUrls: img_list,
+        bigImg: img_list[0]
+      })
+    })
 
   },
 

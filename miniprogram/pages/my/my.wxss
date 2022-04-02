@@ -84,3 +84,9 @@
   height: 24rpx;
   margin-top: 22px;
 }
+.getuserinfo{
+  width: 76px;
+  font-size: 30rpx;
+  background-color: #fff;
+  color: #666;
+}

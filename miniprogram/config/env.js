@@ -1,0 +1,1 @@
+export const admin = ['o0oLx0HwxjATxR2i7vyaHhih_1XU', 'o0oLx0OGVOkgcUNpGD-hK_vcFP78']

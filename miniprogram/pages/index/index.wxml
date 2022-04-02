@@ -1,9 +1,48 @@
 <!--index.wxml-->
 <view class="container">
-  <image class='music {{playMusic ? "play" : ""}}' bindtap='playMusic' mode='aspectFill' src='/images/music.png'></image>
+  <!-- <image class='music {{playMusic ? "play" : ""}}' bindtap='playMusic' mode='aspectFill' src='/images/music.png'></image> -->
   <!-- <image class='face' mode='widthFix' src='/images/face.png'></image>
   <view class='nomain'>半夏时光，半支离歌</view> -->
-  <image class='bg' src='/images/bg.png'></image>
-  <button wx:if="{{!hasUserInfo}}" class='getuserinfo' open-type='getUserInfo' bindgetuserinfo="getUserInfo">进入主页</button>
-  <button wx:if="{{hasUserInfo}}" bindtap='toIndex' class='getuserinfo'>进入主页</button>
+  <!-- <image class='bg' src='/images/bg.png'></image> -->
+  <!-- <button wx:if="{{!hasUserInfo}}" class='getuserinfo' open-type='getUserInfo' bindgetuserinfo="getUserInfo">进入主页</button> -->
+  <!-- <button bindtap='toIndex' class='getuserinfo'>进入主页</button> -->
+
+  <swiper vertical class="swiper" style="height: {{videoHeight}}px" bindchange="currentChange">
+    <swiper-item class="{{current === 0 ? 'swiper-1 swiper-1-active' : 'swiper-1'}}">
+      <view class="swiper-1-normal swiper-1-img1">
+        <image class='swiper-1-1' src='/images/index/flower.png'></image>
+        <view class="swiper-1-main">
+          <image class='swiper-1-1-img' mode="aspectFill" src='{{list[0].src}}'></image>
+        </view>
+      </view>
+      <view class="swiper-1-text-normal swiper-1-text">
+        <image class="swiper-1-content" src="/images/index/text1.png" />
+        <image class="swiper-1-content-img" src="/images/index/flower2.png" />
+      </view>
+      <view class="swiper-1-grass">
+        <image class="swiper-1-text1 swiper-1-text1-normal" src="/images/index/grass1.png" />
+        <image class="swiper-1-text2 swiper-1-text2-normal" src="/images/index/grass2.png" />
+        <image class="swiper-1-text3 swiper-1-text3-normal" src="/images/index/grass5.png" />
+        <image class="swiper-1-text5 swiper-1-text5-normal" src="/images/index/grass3.png" />
+        <image class="swiper-1-text4 swiper-1-text4-normal" src="/images/index/grass6.png" />
+        <image class="swiper-1-text6 swiper-1-text6-normal" src="/images/index/grass4.png" />
+      </view>
+    </swiper-item>
+    <swiper-item class="{{current === 1 ? 'swiper-2 swiper-2-active' : 'swiper-2'}}">
+      <image class="swiper-2-bg" src="/images/index/bg.jpg" />
+      <View class="swiper-2-main1-normal swiper-2-main1"><image mode="aspectFill" class="swiper-2-img1" src="{{list[1].src}}" /></View>
+      <image class="swiper-2-text swiper-2-text-animate" src="/images/index/text2.png" />
+      <View class="swiper-2-main2-normal swiper-2-main2"><image mode="aspectFill" class="swiper-2-img2" src="{{list[2].src}}" /></View>
+    </swiper-item>
+    <swiper-item class="{{current === 2 ? 'swiper-3 swiper-3-active' : 'swiper-3'}}">
+      <image class="swiper-3-img swiper-3-img-animate" src="/images/index/flower3.png" />
+      <View class="swiper-3-main">
+        <image class="swiper-3-main1 swiper-3-main1-animate" mode="aspectFill" src="{{list[3].src}}" />
+        <image class="swiper-3-main2 swiper-3-main2-animate" mode="aspectFill" src="{{list[4].src}}" />
+      </View>
+      <image class="swiper-3-img2 swiper-3-img2-animate" src="/images/index/text3.png" />
+      <View class="tohome" bindtap='toIndex'>进入主页 ></View>
+    </swiper-item>
+  </swiper>
+
 </view>

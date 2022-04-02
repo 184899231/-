@@ -10,6 +10,7 @@
               bind:deleteImg="deleteImg" 
               bind:edit="editImg" 
               bind:hideEdit="hideEdit"
+              bind:recommendImg="recommendImg"
               wx:if="{{index%2==0}}"></item>
         </block>
     </view>
@@ -23,6 +24,7 @@
               bind:deleteImg="deleteImg" 
               bind:edit="editImg" 
               bind:hideEdit="hideEdit"
+              bind:recommendImg="recommendImg"
               wx:if="{{index%2==1}}"></item>
         </block>
     </view>

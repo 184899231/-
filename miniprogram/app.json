@@ -22,27 +22,27 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页",
+        "text": "生",
         "iconPath": "./images/index.png",
-        "selectedIconPath": "./images/index_select.png"
+        "selectedIconPath": "./images/index.png"
       },
       {
         "pagePath": "pages/mood/mood",
-        "text": "心情",
+        "text": "活",
         "iconPath": "./images/mood.png",
-        "selectedIconPath": "./images/mood_select.png"
+        "selectedIconPath": "./images/mood.png"
       },
       {
         "pagePath": "pages/picture_list/picture_list",
-        "text": "列表",
+        "text": "小",
         "iconPath": "./images/list.png",
-        "selectedIconPath": "./images/list_select.png"
+        "selectedIconPath": "./images/list.png"
       },
       {
         "pagePath": "pages/my/my",
-        "text": "我的",
+        "text": "记",
         "iconPath": "./images/my.png",
-        "selectedIconPath": "./images/my_select.png"
+        "selectedIconPath": "./images/my.png"
       }
     ],
     "color": "#666",

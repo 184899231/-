@@ -17,7 +17,7 @@ Component({
   },
 
   attached(){
-
+    //console.log('detail', this.data.detail)
   },
 
   /**
@@ -38,6 +38,9 @@ Component({
     },
     hideEdit(){
       this.triggerEvent('hideEdit', this)
+    },
+    recommendImg(e){
+      this.triggerEvent('recommendImg', e.currentTarget.dataset.id)
     }
   }
 })

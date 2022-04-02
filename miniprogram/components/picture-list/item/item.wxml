@@ -1,9 +1,11 @@
 <!--components/picture-list/item/item.wxml-->
 <view class="item" bindlongpress="showEditEvent" data-index="{{index}}">
   <image class="item-img" bindtap='previewImage' data-index="{{index}}" src="{{detail.src}}" mode="widthFix"></image>
+  <!-- <view class="open">{{detail.open ? '' : '私密'}}</view> -->
   <view class="meng" wx:if="{{detail.showEdit}}" bindtap="hideEdit"></view>
   <view class="edit" wx:if="{{detail.showEdit}}">
     <!-- <view class="edit-item" data-id="{{detail._id}}" catchtap="editHandle">编辑</view> -->
+    <view class="edit-item item-recommend" data-id="{{detail._id}}" catchtap="recommendImg">推荐</view>
     <view class="edit-item" data-id="{{detail._id}}" catchtap="deleteImg">删除</view>
   </view>
 </view>
